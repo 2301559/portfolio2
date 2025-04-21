@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nature Photography Gallery">
+  
+  <!-- AOS Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+  <title>Home</title>
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Link to your CSS -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Add Smooth Scrolling -->
+  <style>
+      html {
+          scroll-behavior: smooth;
+      }
+  </style>
+</head>
+<body id="contact">
+  <header class="page-header">
+   
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="hobby.html">Hobby</a></li>
+            <li><a href="unilife.html">UniLife</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    
+</header>
+
+  <main>
+    <div id="gallery" class="gallery-grid">
+    </div>
+
+<script>
+  const imageData = [
+    { src: "img/IMG_6439.jpeg", alt: "My Nephew" },
+    { src: "img/photo_2025-04-20 22.13.19.jpeg", alt: "New Year at MDIST" },
+    { src: "img/photo_2025-04-20 22.02.15.jpeg", alt: "My love" },
+    { src: "img/photo_2025-04-20 22.13.22.jpeg", alt: "My fams" },
+    { src: "img/IMG_1903.JPG", alt: "Me and flowers" },
+    { src: "img/photo_2025-04-20 22.06.39.jpeg", alt: "cookies" },
+    { src: "img/photo_2025-04-20 22.03.43.jpeg", alt: "My favs" },
+    { src: "img/photo_2025-04-20 22.07.10.jpeg", alt: "Me" },
+    { src: "img/photo_2025-04-20 22.05.37.jpeg", alt: "flowers" }
+  ];
+
+  const gallery = document.getElementById("gallery");
+
+  imageData.forEach(image => {
+    const imgElement = document.createElement("img");
+    imgElement.src = image.src;
+    imgElement.alt = image.alt;
+    imgElement.className = "gallery-item";
+    gallery.appendChild(imgElement);
+  });
+</script>
+<div class="carousel-container">
+  <div class="carousel-slide">
+    <img src="img/photo_2025-04-21 09.37.48.jpeg" class="carousel-image" alt="At the sister's wedding">
+    <img src="img/photo_2025-04-21 09.37.51.jpeg" class="carousel-image" alt="me and my girls">
+    <img src="img/photo_2025-04-21 09.52.14.jpeg" class="carousel-image" alt="me">
+    <img src="img/photo_2025-04-21 09.49.50.jpeg" class="carousel-image" alt="my love">
+    <img src="img/photo_2025-04-21 09.37.50.jpeg" class="carousel-image" alt="just me">
+
+    <!-- добавь сколько нужно -->
+  </div>
+  <button class="prev" onclick="moveSlide(-1)">❮</button>
+  <button class="next" onclick="moveSlide(1)">❯</button>
+</div>
+<script>
+  let slideIndex = 0;
+  const slide = document.querySelector('.carousel-slide');
+  const images = document.querySelectorAll('.carousel-image');
+
+  function moveSlide(n) {
+    slideIndex += n;
+    if (slideIndex < 0) slideIndex = images.length - 1;
+    if (slideIndex >= images.length) slideIndex = 0;
+    slide.style.transform = `translateX(-${slideIndex * 100}%)`;
+  }
+
+  // Optional: auto slide every 5s
+  setInterval(() => moveSlide(1), 5000);
+</script>
+
+
+  </main>    
+  <!-- Footer -->
+  <footer id="home">
+    <div class="footer-content" class="social-links">
+        <h1>
+        <a href="https://www.instagram.com/_makhiina_?igsh=MTB6czJpbGtnYzFtNA%3D%3D&utm_source=qr" target="_blank" class="social-link instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://t.me/+998903590529" target="_blank" class="social-link telegram">
+          <i class="fab fa-telegram-plane"></i>
+          </h1>
+        </a>
+    </div>
+<div class="footer-h2-content">
+        <p>&copy; 2025 by MK. All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- JavaScript -->
+<script src="script.js"></script>
+<script>
+    AOS.init();
+</script>
+
+</body>
+</html>

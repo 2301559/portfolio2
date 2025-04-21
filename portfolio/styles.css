@@ -1,0 +1,1189 @@
+/* Global Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body#home {
+    font-family: 'Raleway', sans-serif;
+    background-color: #fff;
+    color: #333;
+    margin: 0; /* Ensure no default margins */
+    padding: 0; /* Remove default padding */
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+h1, p {
+    margin: 0;
+}
+
+/* Hero Section */
+/* Основной фон */
+#hero {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Размытие фона */
+#hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('img/IMG_3855.JPG') no-repeat center center/cover;
+    filter: blur(5px);
+    z-index: -2;
+    /* Убедитесь, что фон растягивается на весь экран, включая нижнюю часть */
+    background-size: cover;
+    background-position: center;
+}
+
+/* Затемнение поверх размытости */
+#hero .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: -1;
+}
+
+/* Текст */
+#hero h1,
+#hero p {
+    color: #fff;
+    z-index: 1;
+}
+
+#hero h1 {
+    font-size: 3rem;
+    font-family: 'Roboto', sans-serif;
+    margin: 20px 0;
+}
+
+#hero p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Адаптив */
+@media screen and (max-width: 768px) {
+    #hero h1 {
+        font-size: 5vw;
+    }
+
+    #hero p {
+        font-size: 4vw;
+        padding: 0 10px;
+    }
+}
+
+/* Navigation Bar */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 100;
+    padding: 15px 0;
+    text-align: center;
+    transition: background 0.3s ease;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+header nav ul li {
+    display: inline-block;
+}
+
+header nav ul li a {
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+header nav ul li a:hover {
+    color: #e74c3c;
+    transform: scale(1.1);
+}
+
+/* About Me Section */
+/* Плавное всплытие */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(50px); /* Начинаем с 50px вниз */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* В конце будет на своем месте */
+    }
+}
+
+.about-me {
+    padding: 80px 20px;
+    background: linear-gradient(to right, #add7c458, #d8e7e0);
+    display: flex;
+    justify-content: center;
+}
+
+.about-me .container {
+    max-width: 800px;
+    padding: 40px;
+    background-color: #ffffff8a;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    opacity: 1; /* Изначально скрыт */
+    transform: translateY(50px); /* Изначально немного ниже */
+    transition: opacity 1.2s ease-out, transform 1.2s ease-out; /* Плавная анимация для opacity и transform */
+}
+
+/* Эффект анимации для секции About Me */
+.about-me .container.fade-in {
+    opacity: 1; /* После добавления класса меняем opacity на 1 */
+    transform: translateY(0); /* В конце анимации элемент окажется на своем месте */
+}
+
+/* Row Container */
+.row-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 60px;
+    padding: 0 20px;
+}
+
+.image-container {
+    position: relative;
+    width: 230px;
+    height: 320px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    transition: transform 0.4s ease;
+    cursor: pointer;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease, filter 0.3s ease;
+}
+
+.image-container:hover {
+    transform: translateY(-10px);
+}
+
+.image-container:hover img {
+    transform: scale(1.1);
+    filter: brightness(80%);
+}
+
+.image-container .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.55);
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s ease;
+}
+
+.image-container .overlay a {
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 10px 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+}
+
+.image-container:hover .overlay {
+    opacity: 1;
+}
+
+/* Gallery Section */
+#gallery {
+    padding: 80px 20px;
+    text-align: center;
+    background-color: #f4f4f4;
+    background: linear-gradient(to right, #add7c458, #d8e7e0);
+
+}
+
+#gallery .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    justify-items: center;
+}
+
+#gallery .photo {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+#gallery .photo img {
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+#gallery .photo:hover img {
+    transform: scale(1.1);
+    filter: brightness(80%);
+}
+
+/* Footer */
+footer {
+    margin: 0;
+    font-family: 'Raleway', sans-serif;
+    height: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.824); /* Тёмная шторка */
+    overflow: hidden;
+}
+
+.footer-content {
+    position: absolute;
+    top: 8px; /* Расстояние от верхней части экрана */
+    left: 50%; /* Центрирование по горизонтали */
+    transform: translateX(-50%); /* Точное центрирование с учетом ширины элемента */
+    font-family: 'Raleway', sans-serif;
+    text-align: center; /* Выравнивание текста по центру */
+    color: white; /* Цвет текста */
+    font-size: 1em; /* Мелкий шрифт */
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон для текста */
+    padding: 20px;
+    border-radius: 10px; /* Скругленные углы */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Тень */
+}
+
+.footer-h2-content {
+    position: absolute;
+    bottom: 14px; /* Расстояние от нижней части экрана */
+    left: 50%; /* Центрирование по горизонтали */
+    transform: translateX(-50%); /* Точное центрирование с учетом ширины элемента */
+    font-family: 'Raleway', sans-serif;
+    color: white; /* Цвет текста */
+    font-size: 1em; /* Мелкий шрифт */
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон для текста */
+    padding: 10px; /* Уменьшение отступов */
+    border-radius: 10px; /* Скругленные углы */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Тень */
+}
+
+/* Social Links */
+.social-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.social-link {
+    font-size: 40px;
+    text-decoration: none;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.instagram {
+    color: #E4405F;
+}
+
+.telegram {
+    color: #0088CC;
+}
+
+.social-link:hover {
+    transform: scale(1.1);
+}
+
+/* Scroll Animation */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-out;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #hero {
+        height: 80vh;
+    }
+
+    #hero h1 {
+        font-size: 2rem;
+    }
+
+    #hero p {
+        font-size: 1rem;
+    }
+
+    header {
+        padding: 10px 0;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .about-me h2 {
+        font-size: 2rem;
+    }
+
+    .about-me p {
+        font-size: 1rem;
+    }
+
+    .carousel {
+        max-width: 100%;
+    }
+
+    .prev, .next {
+        padding: 8px 12px;
+        font-size: 1.2rem;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body#hobby{
+    font-family: 'Raleway', sans-serif;
+    color: #fff;
+    background: url('img/IMG_4740.JPG') no-repeat center center/cover;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+/* Затемнение фона поверх body */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* затемнение */
+    z-index: -1;
+}
+
+/* Hero Section */
+.hero-section {
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 20px 40px;
+    border-radius: 10px;
+}
+
+.overlay h1 {
+    color: white;
+    font-size: 3rem;
+}
+
+/* Articles Section */
+.hobby-article {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px 30px;
+    border-radius: 10px;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.hobby-article:hover {
+    transform: scale(1.03);
+}
+
+.hobby-article img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    object-fit: cover;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+.hobby-article {
+    text-align: left; /* Убираем центрирование */
+    align-items: stretch;
+}
+
+.hobby-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.hobby-content img {
+    width: 200px;
+    height: auto;
+    margin: 0;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.hobby-content .text {
+    flex: 1;
+}
+
+.hobby-content .text h2 {
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+.hobby-content .text p {
+    font-size: 16px;
+}
+.hobby-article {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px 30px;
+    border-radius: 10px;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    color: #fff;
+    transition: transform 0.3s ease;
+    margin-bottom: 30px;
+}
+
+.hobby-article:hover {
+    transform: scale(1.03);
+}
+
+.hobby-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    text-align: left;
+}
+
+.hobby-content img {
+    width: 200px;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.hobby-content .text {
+    flex: 1;
+}
+
+.hobby-content .text h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.hobby-content .text p {
+    font-size: 16px;
+    margin: 0;
+}
+
+/* Footer */
+footer#hobby {
+    margin: 0;
+    font-family: 'Raleway', sans-serif;
+    height: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.344); /* Тёмная шторка */
+    overflow: hidden;
+}
+
+.footer-content#hobby {
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: white;
+    font-size: 1em;
+    z-index: 2;
+    background-color: rgba(255, 255, 255, 0.1); /* Светлая полупрозрачность */
+    padding: 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(4px); /* Добавляем небольшой блюр */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.23);
+}
+
+.footer-h2-content#hobby {
+    position: absolute;
+    bottom: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 1em;
+    z-index: 2;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 10px;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+
+
+
+
+
+
+/* Сброс отступов и базовые стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body#lifestyle, html {
+    height: 100%;
+    font-family: 'Raleway', sans-serif;
+}
+
+/* Общий фон — одна фотография на всю страницу */
+body#lifestyle {
+    background-image: url('img/IMG_2257.JPG'); /* Замените на свой файл */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+}
+
+/* Приветственная шторка */
+.welcome-banner {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.434); /* затемнённая полупрозрачная шторка */
+    text-align: center;
+    color: white;
+}
+.welcome-banner h1{
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.welcome-banner p{
+    font-size: 20px;
+    font-weight: 300;
+}
+
+/* Анимация появления шторки */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.about-section-lifestyle {
+    padding: 80px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.about-box-lifestyle {
+    background-color: rgba(255, 255, 255, 0.85); /* белый полупрозрачный */
+    border-radius: 15px;
+    padding: 40px 30px;
+    max-width: 800px;
+    width: 100%;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    backdrop-filter: blur(4px); /* эффект стекла */
+}
+
+.about-box-lifestyle  h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.about-box p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.image-container {
+    position: relative;
+    width: 230px;
+    height: 320px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    transition: transform 0.4s ease;
+    cursor: pointer;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease, filter 0.3s ease;
+}
+
+.image-container:hover {
+    transform: translateY(-10px);
+}
+
+.image-container:hover img {
+    transform: scale(1.1);
+    filter: brightness(80%);
+}
+
+.image-container .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.55);
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s ease;
+}
+
+.image-container .overlay a {
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 10px 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+}
+
+.image-container:hover .overlay {
+    opacity: 1;
+}
+
+/* Gallery Section */
+#gallery {
+    padding: 80px 20px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.85);
+    background: ( #9fa09f5b);
+
+}
+
+#gallery .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    justify-items: center;
+}
+
+#gallery .photo {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+#gallery .photo img {
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+#gallery .photo:hover img {
+    transform: scale(1.1);
+    filter: brightness(80%);
+}
+
+
+/* Основной фон с изображением */
+body#contact {
+    position: relative;
+    min-height: 100vh;
+    font-family: 'Raleway', sans-serif;
+    background-color: transparent;
+    color: #333;
+    z-index: 0;
+}
+
+body#contact::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('img/IMG_2498.JPG') no-repeat center center/cover;
+    z-index: -2;
+    filter: blur(5px);
+}
+
+/* Навигация */
+nav#page-nav ul {
+    display: flex;
+    justify-content: center;
+    background-color: #3333333f;
+    padding: 15px 0;
+    margin: 0;
+    list-style: none;
+}
+
+nav#page-nav ul li {
+    margin: 0 20px;
+}
+
+nav#page-nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Секция контактов */
+.contact-section {
+    padding: 60px 20px;
+}
+
+.contact-container {
+    background-color: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(4px);
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 700px;
+    margin: 0 auto;
+    color: white;
+    margin-top: 60px; /* ⬅️ добавим отступ от навигации */
+    
+}
+
+.contact-container h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.contact-container h3 {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    background-color: rgba(255, 255, 255, 0.15);
+    color: white;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: #eee;
+}
+
+.contact-form button {
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background-color: #e74c3c;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.contact-form button:hover {
+    background-color: #c0392b;
+}
+
+.email-text {
+    margin-top: 15px;
+    font-size: 0.95rem;
+    color: white;
+}
+
+.email-text a {
+    color: #ffcccc;
+}
+
+/* Ссылки на соцсети */
+.social-links {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+.social-link {
+    font-size: 1.2rem;
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.social-link.instagram:hover {
+    color: #E4405F;
+}
+
+.social-link.telegram:hover {
+    color: #0088CC;
+}
+
+/* Футер */
+footer#page-footer  {
+    height: 100px;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    z-index: 0;
+    }
+ footer p {
+        color: #eee; /* или white — светлый и читаемый текст */
+        font-size: 0.95rem;
+    }
+    
+
+
+
+
+    body.unilife-page {
+        margin: 0;
+        font-family: sans-serif;
+        color: white;
+      }
+      
+      /* Фон с затемнением */
+      .unilife-background {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+          url('img/IMG_2498.JPG');
+        background-size: 100% 100%; /* чтобы не было приближено */
+        background-repeat: no-repeat;
+        background-position: center top;
+        min-height: 100vh;
+        padding: 40px 20px;
+      }
+      
+      /* Заголовок */
+      .unilife-header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      .unilife-header h1 {
+        font-size: 2.8rem;
+        font-weight: bold;
+      }
+      
+      /* Articles Section */
+.unilife-article {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px 30px;
+    border-radius: 10px;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.unilife-article:hover {
+    transform: scale(1.03);
+}
+
+.unilife-article img {
+    width: 50%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    object-fit: cover;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+.unilife-article {
+    text-align: left; /* Убираем центрирование */
+    align-items: stretch;
+}
+
+.unilife-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.unilife-content img {
+    width: 250px;
+    height: auto;
+    margin: 0;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    object-fit: cover;
+}
+
+.unilife-content .text {
+    flex: 1;
+}
+
+.unilife-content .text h2 {
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+.unilife-content .text p {
+    font-size: 16px;
+}
+.unilife-article {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px 30px;
+    border-radius: 10px;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    color: #fff;
+    transition: transform 0.3s ease;
+    margin-bottom: 30px;
+}
+
+.unilife-article:hover {
+    transform: scale(1.03);
+}
+
+.unilife-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    text-align: left;
+}
+
+.unilife-content img {
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.unilife-content .text {
+    flex: 1;
+}
+
+.unilife-content .text h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.unilife-content .text p {
+    font-size: 16px;
+    margin: 0;
+}
+
+      
+      /* Footer */
+      html, body#unilife {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    
+    body#unilife {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    
+    main#unilife {
+        flex: 1;
+    }
+    
+    /* Футер */
+    .unilife-footer {
+        font-family: 'Raleway', sans-serif;
+        height: 20vh;
+        justify-content: center;
+        background-color: rgba(0, 0, 0, 0.344);
+        background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('img/IMG_2498.JPG');
+        padding: 40px 20px;
+        align-items: center;
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        justify-content: center;
+    }
+    
+      
+      /* Адаптивность */
+      @media (max-width: 768px) {
+        .unilife-content {
+          flex-direction: column;
+        }
+      
+        .unilife-image,
+        .unilife-text {
+          flex: 1 1 100%;
+        }
+      
+        .unilife-image.small {
+          width: 100%;
+        }
+      
+        .unilife-header h1 {
+          font-size: 2rem;
+        }
+      }
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        max-width: 500px;
+        margin: 30px auto 0 auto;
+        padding: 20px;
+      }
+      
+      .gallery-item {
+        width: 100%;
+        transition: transform 0.3s ease;
+        cursor: pointer;
+        border-radius: 10px;
+      }
+      
+      .gallery-item:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      }
+     
+      .carousel-container {
+        position: relative;
+        max-width: 500px; /* уменьшили ширину */
+        margin: 40px auto;
+        overflow: hidden;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      }
+      
+      .carousel-slide {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+      }
+      
+      .carousel-image {
+        min-width: 100%;
+        height: 600px; /* фиксированная высота */
+        object-fit: cover; /* обрезка по размеру блока */
+        border-radius: 15px;
+      }
+      
+      .prev, .next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(0,0,0,0.5);
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        font-size: 20px;
+        border-radius: 50%;
+      }
+      
+      .prev:hover, .next:hover {
+        background-color: rgba(0,0,0,0.8);
+      }
+      
+      .prev {
+        left: 10px;
+      }
+      
+      .next {
+        right: 10px;
+      }
+      
